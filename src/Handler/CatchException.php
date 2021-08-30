@@ -24,7 +24,7 @@ class CatchException
 
     public function response()
     {
-        echo $this->exception->getMessage();
+        return $this->exception->getMessage();
     }
 
 }

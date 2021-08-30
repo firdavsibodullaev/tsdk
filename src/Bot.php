@@ -32,10 +32,11 @@ class Bot
     {
         try {
             $response = $this->request->request("get", "/bot{$token}/setWebhook?url={$url}");
+            return new Webhook($response->getBody());
         } catch (GuzzleException $e) {
             $exception = new CatchException($e);
+            return $exception->response();
         }
 
-        return new Webhook($response->getBody());
     }
 }
