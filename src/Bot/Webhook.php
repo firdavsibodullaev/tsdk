@@ -23,7 +23,7 @@ class Webhook
      */
     public function code(): int
     {
-        return $this->data["ok"] ? 200 : 429;
+        return $this->data["ok"] ? 200 : $this->data['error_code'];
     }
 
     /**
@@ -31,7 +31,7 @@ class Webhook
      */
     public function isSuccess(): bool
     {
-        return $this->data["ok"];
+        return $this->data["ok"] === true;
     }
 
     /**
