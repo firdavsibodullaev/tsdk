@@ -42,7 +42,7 @@ class CatchException
         $trace_string = preg_replace("/\s#/", "\n#", $trace_string);
 
         $logs_dir = "{$root}/logs";
-        $logs_file = "logs-" . date("d-m-Y") . ".txt";
+        $logs_file = "logs-" . date("d-m-Y") . ".log";
         if (!is_dir($logs_dir)) {
             mkdir($logs_dir);
         }
