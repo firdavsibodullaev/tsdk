@@ -24,13 +24,15 @@ class Bot
     /**
      * @param string $token
      * @param string $url
-     * @return Webhook
-     * @throws GuzzleException
+     * @return Webhook|string
      */
-    public function setWebhook(string $token, string $url): Webhook
+    public function setWebhook(string $token, string $url)
     {
-        $response = $this->request->request("get", "/bot{$token}/setWebhook?url={$url}");
-
+        try {
+            $response = $this->request->request("get", "/bot{$token}/setWebhook?url={$url}");
+        } catch (GuzzleException $e) {
+            return $e->getMessage();
+        }
         return new Webhook($response->getBody());
     }
 }
