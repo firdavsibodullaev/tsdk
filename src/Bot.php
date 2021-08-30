@@ -28,11 +28,11 @@ class Bot
      */
     public function setWebhook(string $token, string $url)
     {
-        try {
+//        try {
             $response = $this->request->request("get", "/bot{$token}/setWebhook?url={$url}");
-        } catch (GuzzleException $e) {
-            return $e->getMessage();
-        }
+//        } catch (GuzzleException $e) {
+//            return $e->getCode();
+//        }
         return new Webhook($response->getBody());
     }
 }
