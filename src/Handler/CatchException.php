@@ -22,9 +22,32 @@ class CatchException
         $this->exception = $exception;
     }
 
-    public function response()
+    public function catch()
+    {
+        $this->log();
+        return $this->response();
+    }
+
+    public function response(): string
     {
         return $this->exception->getMessage();
     }
 
+
+    private function log()
+    {
+        $root = $_SERVER["DOCUMENT_ROOT"];
+        $trace_string = "\n" . date("H:i:s_d-m-Y") . " " . $this->response() . "\n" . $this->exception->getTraceAsString();
+
+        $trace_string = preg_replace("/\s#/", "\n#", $trace_string);
+
+        $logs_dir = "{$root}/logs";
+        $logs_file = "logs" . date("d-m-Y") . ".txt";
+        if (!is_dir($logs_dir)) {
+            mkdir($logs_dir);
+        }
+        $fp = fopen("{$logs_dir}/{$logs_file}", "a");
+        fwrite($fp, $trace_string);
+        fclose($fp);
+    }
 }
