@@ -6,6 +6,7 @@ namespace Firdavs\Tsdk;
 
 use Firdavs\Tsdk\Bot\Webhook;
 use Firdavs\Tsdk\Constants\MainConstants;
+use Firdavs\Tsdk\Handler\CatchException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 
@@ -25,14 +26,16 @@ class Bot
      * @param string $token
      * @param string $url
      * @return Webhook|string
+     * @throws GuzzleException
      */
     public function setWebhook(string $token, string $url)
     {
-//        try {
+        try {
             $response = $this->request->request("get", "/bot{$token}/setWebhook?url={$url}");
-//        } catch (GuzzleException $e) {
-//            return $e->getCode();
-//        }
+        } catch (GuzzleException $e) {
+            $exception = new CatchException($e);
+        }
+
         return new Webhook($response->getBody());
     }
 }
