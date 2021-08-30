@@ -15,4 +15,14 @@ class Updates
     {
         $this->updates = $updates;
     }
+
+    public function json()
+    {
+        return json_decode($this->updates, true);
+    }
+
+    public function object()
+    {
+        return json_decode($this->updates, false);
+    }
 }

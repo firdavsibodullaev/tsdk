@@ -4,6 +4,7 @@
 namespace Firdavs\Tsdk;
 
 
+use Firdavs\Tsdk\Bot\Updates;
 use Firdavs\Tsdk\Bot\Webhook;
 use Firdavs\Tsdk\Constants\MainConstants;
 use Firdavs\Tsdk\Handler\CatchException;
