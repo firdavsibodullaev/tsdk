@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Firdavs\Tsdk\Constants\Bot;
+namespace Firdavs\Tsdk\Bot;
 
 
 class Webhook
