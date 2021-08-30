@@ -15,8 +15,20 @@ class Bot
     /** @var Client $request */
     private Client $request;
 
-    public function __construct()
+    /** @var string $token */
+    private string $token;
+
+    /**
+     * Bot constructor.
+     * @param string|null $token
+     */
+    public function __construct(string $token = null)
     {
+        if (!is_null($token)) {
+            $this->token = $token;
+        } else {
+            $token = ""; // Enter token manually
+        }
         $this->request = new Client([
             'base_uri' => MainConstants::BASE_URL
         ]);
@@ -25,18 +37,27 @@ class Bot
     /**
      * @param string $token
      * @param string $url
-     * @return Webhook|string
-     * @throws GuzzleException
+     * @return Webhook
      */
-    public function setWebhook(string $token, string $url)
+    public function setWebhook(string $url): Webhook
     {
         try {
 
-            $response = $this->request->request("get", "/bot{$token}/setWebhook?url={$url}")->getBody();
+            $response = $this->request->request("get", "/bot{$this->token}/setWebhook?url={$url}")->getBody();
         } catch (GuzzleException $e) {
             $response = (new CatchException($e))->catch();
         }
         return new Webhook($response);
 
+    }
+
+    public function getUpdates()
+    {
+        try {
+            $response = $this->request->request("get", "/bot{$this->token}/getUpdates")->getBody();
+        } catch (GuzzleException $e) {
+            $response = (new CatchException($e))->catch();
+        }
+        return new Updates($response);
     }
 }
