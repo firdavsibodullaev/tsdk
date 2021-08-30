@@ -37,7 +37,7 @@ class CatchException
     private function log()
     {
         $root = $_SERVER["DOCUMENT_ROOT"];
-        $trace_string = "\n[" . date("d-m-Y H:i:S") . "] " . $this->response() . "\n" . $this->exception->getTraceAsString();
+        $trace_string = "\n[" . date("d-m-Y H:i:s") . "] " . $this->response() . "\n" . $this->exception->getTraceAsString();
 
         $trace_string = preg_replace("/\s#/", "\n#", $trace_string);
 
