@@ -24,9 +24,10 @@ class Bot
     /**
      * @param string $token
      * @param string $url
+     * @return Webhook
      * @throws GuzzleException
      */
-    public function setWebhook(string $token, string $url)
+    public function setWebhook(string $token, string $url): Webhook
     {
         $response = $this->request->request("get", "/bot{$token}/setWebhook?url={$url}");
 
