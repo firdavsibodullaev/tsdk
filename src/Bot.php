@@ -4,7 +4,7 @@
 namespace Firdavs\Tsdk;
 
 
-use Firdavs\Tsdk\Constants\Bot\Webhook;
+use Firdavs\Tsdk\Bot\Webhook;
 use Firdavs\Tsdk\Constants\MainConstants;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
