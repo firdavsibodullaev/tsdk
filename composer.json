@@ -1,0 +1,19 @@
+{
+    "name": "firdavs/tsdk",
+    "description": "Telegram bot package",
+    "type": "library",
+    "require": {
+        "guzzlehttp/psr7": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Firdavs\\Tsdk\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Firdavs",
+            "email": "firdavs3253@gmail.com"
+        }
+    ]
+}
